@@ -1,0 +1,13 @@
+/* TEAM */
+Developer: Saksham Tomer
+Contact: sakshamtomerdevs [at] gmail [dot] com
+GitHub: https://github.com/saksham-tomer
+LinkedIn: https://www.linkedin.com/in/saksham-tomer
+Location: Noida, India
+
+/* SITE */
+Last update: 2026/04
+Language: English
+Doctype: HTML5
+IDE: VS Code
+Tech Stack: Remix, React, Three.js, Framer Motion
