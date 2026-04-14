@@ -102,7 +102,7 @@ export const PeacefulWhisper = () => {
                   zIndex: 2,
                 }}>
                   <video
-                    src="/Video Project.mp4"
+                    src="https://drive.google.com/uc?export=download&id=1M1K8LRHx_ND721jSdH0HMsG2mM-or0TP"
                     autoPlay
                     muted
                     loop

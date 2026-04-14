@@ -134,7 +134,7 @@ export const Home = () => {
         model={{
           type: 'phone',
           alt: 'Peaceful Whisper AI journaling app',
-          video: '/Video Project.mp4',
+          video: 'https://drive.google.com/uc?export=download&id=1M1K8LRHx_ND721jSdH0HMsG2mM-or0TP',
           textures: [
             {
               srcSet: `${peacefulWhisperTexture} 375w, ${peacefulWhisperTextureLarge} 750w`,
