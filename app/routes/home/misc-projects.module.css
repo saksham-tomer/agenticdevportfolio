@@ -5,13 +5,67 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space2XL);
+  position: relative;
+  overflow: hidden;
 
   @media (--mediaTablet) {
     padding: var(--space2XL) 0;
   }
 }
 
+.backgroundWrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.15;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+.gridSvg {
+  width: 100%;
+  height: 100%;
+  animation: gridMove 20s linear infinite;
+}
+
+.gridPath {
+  stroke: var(--primary);
+  stroke-width: 0.5;
+  opacity: 0.5;
+}
+
+@keyframes gridMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(40px); }
+}
+
+.svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150%;
+  max-width: 1500px;
+  z-index: 0;
+  opacity: 0.05;
+  fill: var(--textTitle);
+  pointer-events: none;
+  animation: float 30s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+  50% { transform: translate(-48%, -52%) rotate(2deg) scale(1.05); }
+  100% { transform: translate(-52%, -48%) rotate(-2deg) scale(0.95); }
+}
+
 .header {
+  position: relative;
+  z-index: 1;
   max-width: var(--maxWidthL);
   width: 100%;
   padding: 0 var(--spaceOuter);
@@ -33,6 +87,8 @@
 }
 
 .grid {
+  position: relative;
+  z-index: 1;
   max-width: var(--maxWidthL);
   width: 100%;
   padding: 0 var(--spaceOuter);

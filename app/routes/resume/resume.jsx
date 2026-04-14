@@ -138,8 +138,8 @@ export function Resume() {
               <a href="tel:+919760896424" className={styles.contactLink}>
                 +91 9760896424
               </a>
-              <a href="https://linkedin.com/in/sakshamtomer" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
-                linkedin.com/in/sakshamtomer
+              <a href="https://www.linkedin.com/in/saksham-tomer-62917b403/" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+                linkedin.com/in/saksham-tomer-62917b403
               </a>
               <a href="https://github.com/saksham-tomer" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
                 github.com/saksham-tomer
@@ -148,10 +148,11 @@ export function Resume() {
             </div>
             <div className={styles.downloadRow}>
               <Button
-                href="/resume"
-                onClick={() => window.print()}
+                href="https://drive.google.com/uc?export=download&id=1rGVNRL91ImPAOGV-C_PYLmUETxg9_Q5M"
+                target="_blank"
+                rel="noopener noreferrer"
                 icon="arrow-right"
-                as="button"
+                as="a"
                 className={styles.downloadBtn}
               >
                 Download PDF

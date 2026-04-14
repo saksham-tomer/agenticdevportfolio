@@ -1,7 +1,13 @@
+import { Suspense, lazy } from 'react';
 import bgPeacefulWhisper from '~/assets/peaceful-whisper-bg.png';
 import { Footer } from '~/components/footer';
 import { Image } from '~/components/image';
 import { Link } from '~/components/link';
+import { deviceModels } from '~/components/model/device-models';
+
+const Model = lazy(() =>
+  import('~/components/model').then(module => ({ default: module.Model }))
+);
 import {
   ProjectBackground,
   ProjectContainer,
@@ -49,24 +55,68 @@ export const PeacefulWhisper = () => {
         <ProjectSection padding="top">
           <ProjectSectionContent>
             <div style={{
-              borderRadius: '16px',
-              overflow: 'hidden',
-              aspectRatio: '16/9',
-              background: '#0a0a0f',
+              position: 'relative',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 40px 80px rgba(0,0,0,0.6)',
+              height: '80vh',
+              width: '100%'
             }}>
-              <video
-                src="/Video Project.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                aria-label="Peaceful Whisper app demo video"
-              />
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                maxWidth: '400px',
+                aspectRatio: '7 / 10',
+                display: 'grid'
+              }}>
+                <Suspense>
+                  <Model
+                    alt="Peaceful Whisper app demo"
+                    cameraPosition={{ x: 0, y: 0, z: 11.5 }}
+                    showDelay={300}
+                    onLoad={() => {}}
+                    show={true}
+                    models={[
+                      {
+                        ...deviceModels.phone,
+                        position: { x: 0, y: 0, z: 0 },
+                        texture: {
+                          srcSet: `${bgPeacefulWhisper} 375w, ${bgPeacefulWhisper} 750w`,
+                          placeholder: bgPeacefulWhisper,
+                          sizes: '(max-width: 768px) 100vw, 400px',
+                        },
+                      }
+                    ]}
+                  />
+                </Suspense>
+                <div style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  width: '38%',
+                  aspectRatio: '9/19.5',
+                  overflow: 'hidden',
+                  borderRadius: '12px',
+                  pointerEvents: 'none',
+                  zIndex: 2,
+                }}>
+                  <video
+                    src="/Video Project.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      borderRadius: '12px',
+                    }}
+                    aria-label="Peaceful Whisper app demo video"
+                  />
+                </div>
+              </div>
             </div>
           </ProjectSectionContent>
         </ProjectSection>

@@ -84,9 +84,26 @@ const miscProjects = [
   },
 ];
 
+import katakana from './katakana.svg';
+
 export function MiscProjects() {
   return (
     <Section className={styles.section} as="section" id="more-projects">
+      <div className={styles.backgroundWrap} aria-hidden="true">
+        <svg className={styles.gridSvg} xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <defs>
+            <pattern id="misc-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" className={styles.gridPath} />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#misc-grid)" />
+        </svg>
+      </div>
+
+      <svg className={styles.svg} viewBox="0 0 751 136" aria-hidden="true">
+        <use href={`${katakana}#katakana-project`} />
+      </svg>
+      
       <div className={styles.header}>
         <Heading level={5} as="h2" className={styles.title}>
           More work

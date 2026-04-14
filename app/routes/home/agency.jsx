@@ -64,7 +64,7 @@ export function Agency() {
                 <DecoderText text="Visionary AI Agency" start={visible} delay={300} />
               </Heading>
               <Text className={styles.subtitle} data-visible={visible} size="xl" as="p">
-                I operate an independent AI agency building intelligent automation systems, multi-agent pipelines, and premium web experiences for ambitious founders — shipped fast, built right.
+                I am a full-time Full Stack Agentic AI Engineer looking to build at cutting-edge tech companies. Alongside my individual work, I also own and operate Visionary AI Agency, where we build intelligent automation systems, multi-agent pipelines, and premium web experiences for ambitious founders — shipped fast, built right.
               </Text>
             </div>
 
