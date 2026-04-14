@@ -59,13 +59,13 @@ export const PeacefulWhisper = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              height: '80vh',
-              width: '100%'
+              width: '100%',
+              margin: '0 auto',
             }}>
               <div style={{
                 position: 'relative',
                 width: '100%',
-                maxWidth: '400px',
+                maxWidth: '500px',
                 aspectRatio: '7 / 10',
                 display: 'grid'
               }}>
@@ -83,7 +83,7 @@ export const PeacefulWhisper = () => {
                         texture: {
                           srcSet: `${bgPeacefulWhisper} 375w, ${bgPeacefulWhisper} 750w`,
                           placeholder: bgPeacefulWhisper,
-                          sizes: '(max-width: 768px) 100vw, 400px',
+                          sizes: '(max-width: 768px) 100vw, 500px',
                         },
                       }
                     ]}
