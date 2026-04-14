@@ -1,0 +1,122 @@
+.section {
+  width: 100vw;
+  padding: var(--space4XL) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space2XL);
+
+  @media (--mediaTablet) {
+    padding: var(--space2XL) 0;
+  }
+}
+
+.header {
+  max-width: var(--maxWidthL);
+  width: 100%;
+  padding: 0 var(--spaceOuter);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spaceS);
+}
+
+.title {
+  color: color-mix(in oklch, var(--textTitle) 60%, transparent);
+  font-size: var(--fontSizeBodyM);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  color: var(--textLight);
+  max-width: 500px;
+}
+
+.grid {
+  max-width: var(--maxWidthL);
+  width: 100%;
+  padding: 0 var(--spaceOuter);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spaceL);
+
+  @media (--mediaMobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spaceM);
+  padding: var(--spaceXL);
+  border: 1px solid color-mix(in oklch, var(--textTitle) 8%, transparent);
+  border-radius: 12px;
+  background: color-mix(in oklch, var(--background) 50%, transparent);
+  opacity: 0.75;
+  transition: opacity var(--durationM) ease, border-color var(--durationM) ease, transform var(--durationS) ease;
+
+  &:hover {
+    opacity: 1;
+    border-color: color-mix(in oklch, var(--primary) 25%, transparent);
+    transform: translateY(-2px);
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spaceS);
+}
+
+.cardTitle {
+  color: var(--textTitle);
+  font-size: var(--fontSizeBodyM);
+  font-weight: var(--fontWeightMedium);
+}
+
+.links {
+  display: flex;
+  gap: var(--spaceS);
+  flex-shrink: 0;
+}
+
+.link {
+  font-size: var(--fontSizeBodyXS);
+  color: var(--textLight);
+  text-decoration: none;
+  padding: 3px 8px;
+  border: 1px solid color-mix(in oklch, var(--textTitle) 12%, transparent);
+  border-radius: 4px;
+  transition: color var(--durationS) ease, border-color var(--durationS) ease;
+
+  &:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+  }
+}
+
+.cardDesc {
+  color: var(--textBody);
+  line-height: 1.5;
+  font-size: var(--fontSizeBodyXS);
+  flex: 1;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.tag {
+  font-size: 11px;
+  color: var(--textLight);
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: color-mix(in oklch, var(--textTitle) 6%, transparent);
+  font-weight: var(--fontWeightMedium);
+  font-variant-numeric: tabular-nums;
+}

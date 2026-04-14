@@ -22,18 +22,8 @@ export async function getPosts() {
     })
   );
 
-  return sortBy(posts, post => post.frontmatter.date, 'desc');
-}
+  const allPosts = posts.filter(p => !p.frontmatter.featured);
+  const featuredPost = posts.find(p => p.frontmatter.featured);
 
-function sortBy(arr, key, dir = 'asc') {
-  return arr.sort((a, b) => {
-    const res = compare(key(a), key(b));
-    return dir === 'asc' ? res : -res;
-  });
-}
-
-function compare(a, b) {
-  if (a < b) return -1;
-  if (a > b) return 1;
-  return 0;
+  return { posts: allPosts, featured: featuredPost };
 }

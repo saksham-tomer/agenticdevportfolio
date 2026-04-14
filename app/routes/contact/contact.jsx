@@ -15,7 +15,6 @@ import { cssProps, msToNum, numToMs } from '~/utils/style';
 import { baseMeta } from '~/utils/meta';
 import { Form, useActionData, useNavigation } from '@remix-run/react';
 import { json } from '@remix-run/node';
-import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import styles from './contact.module.css';
 
 export const meta = () => {
@@ -31,14 +30,6 @@ const MAX_MESSAGE_LENGTH = 4096;
 const EMAIL_PATTERN = /(.+)@(.+){2,}\.(.+){2,}/;
 
 export async function action({ request }) {
-  const ses = new SESClient({
-    region: 'us-east-1',
-    credentials: {
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    },
-  });
-
   const formData = await request.formData();
   const isBot = String(formData.get('name'));
   const email = String(formData.get('email'));
@@ -69,26 +60,31 @@ export async function action({ request }) {
     return json({ errors });
   }
 
-  // Send email via Amazon SES
-  await ses.send(
-    new SendEmailCommand({
-      Destination: {
-        ToAddresses: [process.env.EMAIL],
+  // Send email via Formspree (replace with your real form ID from formspree.io)
+  // Example: https://formspree.io/f/xdoqwbyl
+  const FORMSPREE_URL = 'https://formspree.io/f/xyzabcde'; // <-- REPLACE 'xyzabcde' WITH YOUR REAL FORMSPREE ID
+  
+  try {
+    const response = await fetch(FORMSPREE_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-      Message: {
-        Body: {
-          Text: {
-            Data: `From: ${email}\n\n${message}`,
-          },
-        },
-        Subject: {
-          Data: `Portfolio message from ${email}`,
-        },
-      },
-      Source: `Portfolio <${process.env.FROM_EMAIL}>`,
-      ReplyToAddresses: [email],
-    })
-  );
+      body: JSON.stringify({
+        email: email,
+        message: message,
+        _subject: `Portfolio message from ${email}`
+      }),
+    });
+
+    if (!response.ok) {
+      console.error('Formspree error:', await response.text());
+      return json({ errors: { message: 'Failed to send message. Please try again later.' } });
+    }
+  } catch (error) {
+    console.error('Fetch error:', error);
+    return json({ errors: { message: 'Failed to connect. Please try again later.' } });
+  }
 
   return json({ success: true });
 }

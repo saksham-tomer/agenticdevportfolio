@@ -10,17 +10,24 @@
       }
     },
     "routeIdToServerBundleId": {
+      "routes/articles.webgl-ecommerce-threejs": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/articles.building-rag-pipelines": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/articles.agentic-ai-langgraph": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/projects.peaceful-whisper": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
       "routes/projects.volkihar-knight": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
       "routes/projects.smart-sparrow": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
       "routes/projects.merchandaise": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
       "routes/projects.vim-terminal": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
       "routes/articles.hello-world": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/projects.spritegen": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
       "routes/projects.solxpass": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
       "routes/articles_._index": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/projects.metanft": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
       "routes/projects.slice": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
       "routes/api.set-theme": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
       "routes/articles": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
       "routes/contact": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/resume": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
       "routes/home": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
       "routes/uses": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
       "routes/$": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
@@ -32,6 +39,42 @@
         "id": "root",
         "file": "app/root.jsx",
         "config": {}
+      },
+      "routes/articles.webgl-ecommerce-threejs": {
+        "file": "app/routes/articles.webgl-ecommerce-threejs.mdx",
+        "id": "routes/articles.webgl-ecommerce-threejs",
+        "path": "webgl-ecommerce-threejs",
+        "parentId": "routes/articles",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/articles.building-rag-pipelines": {
+        "file": "app/routes/articles.building-rag-pipelines.mdx",
+        "id": "routes/articles.building-rag-pipelines",
+        "path": "building-rag-pipelines",
+        "parentId": "routes/articles",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/articles.agentic-ai-langgraph": {
+        "file": "app/routes/articles.agentic-ai-langgraph.mdx",
+        "id": "routes/articles.agentic-ai-langgraph",
+        "path": "agentic-ai-langgraph",
+        "parentId": "routes/articles",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/projects.peaceful-whisper": {
+        "file": "app/routes/projects.peaceful-whisper/route.js",
+        "id": "routes/projects.peaceful-whisper",
+        "path": "projects/peaceful-whisper",
+        "parentId": "root",
+        "config": {
+          "runtime": "nodejs"
+        }
       },
       "routes/projects.volkihar-knight": {
         "file": "app/routes/projects.volkihar-knight/route.js",
@@ -78,6 +121,15 @@
           "runtime": "nodejs"
         }
       },
+      "routes/projects.spritegen": {
+        "file": "app/routes/projects.spritegen/route.js",
+        "id": "routes/projects.spritegen",
+        "path": "projects/spritegen",
+        "parentId": "root",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
       "routes/projects.solxpass": {
         "file": "app/routes/projects.solxpass/route.js",
         "id": "routes/projects.solxpass",
@@ -92,6 +144,15 @@
         "id": "routes/articles_._index",
         "path": "articles",
         "index": true,
+        "parentId": "root",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/projects.metanft": {
+        "file": "app/routes/projects.metanft/route.js",
+        "id": "routes/projects.metanft",
+        "path": "projects/metanft",
         "parentId": "root",
         "config": {
           "runtime": "nodejs"
@@ -128,6 +189,15 @@
         "file": "app/routes/contact/route.js",
         "id": "routes/contact",
         "path": "contact",
+        "parentId": "root",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/resume": {
+        "file": "app/routes/resume/route.js",
+        "id": "routes/resume",
+        "path": "resume",
         "parentId": "root",
         "config": {
           "runtime": "nodejs"
@@ -193,6 +263,30 @@
         "id": "root",
         "file": "root.jsx"
       },
+      "routes/articles.webgl-ecommerce-threejs": {
+        "file": "routes/articles.webgl-ecommerce-threejs.mdx",
+        "id": "routes/articles.webgl-ecommerce-threejs",
+        "path": "webgl-ecommerce-threejs",
+        "parentId": "routes/articles"
+      },
+      "routes/articles.building-rag-pipelines": {
+        "file": "routes/articles.building-rag-pipelines.mdx",
+        "id": "routes/articles.building-rag-pipelines",
+        "path": "building-rag-pipelines",
+        "parentId": "routes/articles"
+      },
+      "routes/articles.agentic-ai-langgraph": {
+        "file": "routes/articles.agentic-ai-langgraph.mdx",
+        "id": "routes/articles.agentic-ai-langgraph",
+        "path": "agentic-ai-langgraph",
+        "parentId": "routes/articles"
+      },
+      "routes/projects.peaceful-whisper": {
+        "file": "routes/projects.peaceful-whisper/route.js",
+        "id": "routes/projects.peaceful-whisper",
+        "path": "projects/peaceful-whisper",
+        "parentId": "root"
+      },
       "routes/projects.volkihar-knight": {
         "file": "routes/projects.volkihar-knight/route.js",
         "id": "routes/projects.volkihar-knight",
@@ -223,6 +317,12 @@
         "path": "hello-world",
         "parentId": "routes/articles"
       },
+      "routes/projects.spritegen": {
+        "file": "routes/projects.spritegen/route.js",
+        "id": "routes/projects.spritegen",
+        "path": "projects/spritegen",
+        "parentId": "root"
+      },
       "routes/projects.solxpass": {
         "file": "routes/projects.solxpass/route.js",
         "id": "routes/projects.solxpass",
@@ -234,6 +334,12 @@
         "id": "routes/articles_._index",
         "path": "articles",
         "index": true,
+        "parentId": "root"
+      },
+      "routes/projects.metanft": {
+        "file": "routes/projects.metanft/route.js",
+        "id": "routes/projects.metanft",
+        "path": "projects/metanft",
         "parentId": "root"
       },
       "routes/projects.slice": {
@@ -258,6 +364,12 @@
         "file": "routes/contact/route.js",
         "id": "routes/contact",
         "path": "contact",
+        "parentId": "root"
+      },
+      "routes/resume": {
+        "file": "routes/resume/route.js",
+        "id": "routes/resume",
+        "path": "resume",
         "parentId": "root"
       },
       "routes/home": {

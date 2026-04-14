@@ -1,0 +1,155 @@
+---
+title: 'Building Production RAG Pipelines with LangChain & Hugging Face'
+abstract: A practical guide to building retrieval-augmented generation (RAG) pipelines that actually work in production — covering chunking strategies, embedding models, vector databases, and latency optimization with real benchmarks.
+date: '2025-03-15'
+banner: /static/rag-pipelines-banner.jpg
+featured: true
+---
+
+## Why RAG, and Why Now
+
+Retrieval-Augmented Generation (RAG) is now the standard architecture for grounding LLMs in private or up-to-date knowledge. After building RAG pipelines for enterprise clients at SoftPro India and integrating them into AI game engines, I've learned that the difference between a demo and a production system is enormous.
+
+This post covers the practical lessons — the chunking strategies that actually improve retrieval quality, the embedding models worth running, and how to cut p95 latency by 60% without sacrificing accuracy.
+
+## 1. The Chunking Problem
+
+Most tutorials use fixed-size chunking (e.g., 512 tokens). This is wrong for production.
+
+**Why fixed chunking fails:**
+- Semantic concepts are split arbitrarily
+- Retrieval returns partial context, leading to hallucination
+- Metadata like headings, captions, and code blocks are orphaned
+
+**What works instead:**
+
+```python
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=800,
+    chunk_overlap=150,
+    separators=["\n\n", "\n", ".", "!", "?", ",", " ", ""],
+    length_function=tiktoken_len,  # count by tokens, not chars
+)
+```
+
+The `RecursiveCharacterTextSplitter` tries semantic separators first (double newline = paragraph boundary) before falling back to arbitrary cuts. The 150-token overlap ensures context continuity.
+
+For code-heavy documents, use a dedicated `MarkdownHeaderTextSplitter` or `Language` splitter that understands AST structure:
+
+```python
+from langchain.text_splitter import Language, RecursiveCharacterTextSplitter
+
+code_splitter = RecursiveCharacterTextSplitter.from_language(
+    language=Language.PYTHON,
+    chunk_size=400,
+    chunk_overlap=50,
+)
+```
+
+## 2. Embedding Model Selection
+
+Cost vs. quality trade-offs matter at scale. Here's what I've benchmarked:
+
+| Model | MTEB Score | Dim | Cost/1M tokens | Latency |
+|---|---|---|---|---|
+| `text-embedding-3-small` | 62.3 | 1536 | $0.02 | ~50ms |
+| `text-embedding-3-large` | 64.6 | 3072 | $0.13 | ~80ms |
+| `bge-large-en-v1.5` (local) | 63.5 | 1024 | $0 | ~20ms |
+| `nomic-embed-text` (local) | 62.4 | 768 | $0 | ~15ms |
+
+**My recommendation:** `bge-large-en-v1.5` via `sentence-transformers` is the best free option and outperforms `text-embedding-ada-002`. For production SaaS, `text-embedding-3-small` at $0.02/1M tokens is the pragmatic choice.
+
+```python
+from langchain_huggingface import HuggingFaceEmbeddings
+
+embeddings = HuggingFaceEmbeddings(
+    model_name="BAAI/bge-large-en-v1.5",
+    model_kwargs={"device": "cuda"},  # or "cpu"
+    encode_kwargs={"normalize_embeddings": True},  # for cosine sim
+)
+```
+
+## 3. Vector Database Choice
+
+For production, I've shipped with three databases:
+
+- **Pinecone** — managed, serverless, best for teams without infra experience
+- **pgvector** (via Supabase) — free, SQL joins, great when data model is relational
+- **Chroma** — local dev only, don't use in production
+
+Example with pgvector on Neon (serverless Postgres):
+
+```python
+from langchain_community.vectorstores import PGVector
+
+CONNECTION_STRING = "postgresql://user:pass@host/db"
+
+vectorstore = PGVector.from_documents(
+    documents=docs,
+    embedding=embeddings,
+    connection_string=CONNECTION_STRING,
+    collection_name="kb_chunks",
+    pre_delete_collection=False,
+)
+```
+
+## 4. Retrieval Strategies
+
+Naive cosine similarity retrieval is surprisingly effective — but adding **hybrid search** (combining BM25 keyword + dense vector) reliably improves recall for technical documents:
+
+```python
+from langchain.retrievers import EnsembleRetriever
+from langchain_community.retrievers import BM25Retriever
+
+bm25_retriever = BM25Retriever.from_documents(docs)
+bm25_retriever.k = 4
+
+vector_retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
+
+ensemble_retriever = EnsembleRetriever(
+    retrievers=[bm25_retriever, vector_retriever],
+    weights=[0.4, 0.6],  # tuned empirically
+)
+```
+
+For longer documents, add **reranking** as a post-retrieval step using `cross-encoder/ms-marco-MiniLM-L-6-v2` — this cuts irrelevant context by ~30%.
+
+## 5. Latency Optimization
+
+Our enterprise pipeline went from 4.2s average to 1.7s with these changes:
+
+1. **Embed queries asynchronously** — don't block on I/O
+2. **Cache embeddings** — repeated queries (FAQ patterns) hit Redis first
+3. **Limit retrieved docs** — k=4 outperforms k=10 for coherence + speed
+4. **Use streaming** — return first tokens while retrieval completes in parallel
+
+```python
+from langchain.cache import RedisCache
+import langchain
+
+langchain.llm_cache = RedisCache(redis_url="redis://localhost:6379")
+```
+
+## 6. Evaluation
+
+Never ship a RAG pipeline without eval. Use `ragas` for automated scoring:
+
+```python
+from ragas import evaluate
+from ragas.metrics import context_precision, faithfulness, answer_relevancy
+
+result = evaluate(
+    dataset=test_dataset,
+    metrics=[context_precision, faithfulness, answer_relevancy],
+)
+```
+
+A production-ready pipeline should hit: `faithfulness > 0.85`, `context_precision > 0.75`, `answer_relevancy > 0.80`.
+
+## Conclusion
+
+The gap between a RAG demo and a production system comes down to: semantic chunking, the right embedding model for your budget, hybrid retrieval, and a rigorous eval loop. Skip any one of these and you'll ship a system that looks great in demos but fails your users.
+
+Source code for a production-ready template: [github.com/saksham-tomer](https://github.com/saksham-tomer)

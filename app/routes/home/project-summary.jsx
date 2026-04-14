@@ -167,12 +167,26 @@ export function ProjectSummary({
                   />
                 </Suspense>
               )}
+              {model.video && modelLoaded && (
+                <div className={styles.phoneVideoOverlay}>
+                  <video
+                    className={styles.phoneVideo}
+                    src={model.video}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    aria-label={model.alt}
+                  />
+                </div>
+              )}
             </div>
           </>
         )}
       </div>
     );
   }
+
 
   return (
     <Section

@@ -1,5 +1,5 @@
 import bgSolxpass from '~/assets/solxpass-bg.png';
-import solxpassScreenshot from '~/assets/solxpass-screenshot.png';
+import solxpassCover from '~/assets/solxpass-cover.png';
 import solxpassArch from '~/assets/solxpass-arch.png';
 import { Footer } from '~/components/footer';
 import { Image } from '~/components/image';
@@ -18,20 +18,37 @@ import {
 } from '~/layouts/project';
 import { baseMeta } from '~/utils/meta';
 import { media } from '~/utils/style';
+import styles from './solxpass.module.css';
 
-const title = 'Cross-chain decentralized identity on Solana';
+const title = 'SolXPass — Decentralized Identity & Rewards on Solana';
 const description =
-  'SolXPass is a decentralized identity and access control platform built on Solana, leveraging the Reclaim Protocol to enable verifiable, cross-chain credentials — without exposing private data.';
+  'SolXPass is a proof-of-person platform on Solana that aggregates ZK-verified identity claims across multiple life categories, enabling users to earn NFT rewards and level up — built during the Solana Radar Hackathon.';
 const roles = [
+  'Next.js 14 + TypeScript',
   'Solana / Anchor (Rust)',
-  'Reclaim Protocol SDK',
-  'Next.js + TypeScript',
-  'Cross-chain Architecture',
+  'Reclaim Protocol ZK',
+  'Zero-Knowledge Proofs',
+  'NFT Minting',
 ];
 
 export const meta = () => {
   return baseMeta({ title, description, prefix: 'Projects' });
 };
+
+function YouTubeEmbed({ videoId, title: vidTitle }) {
+  return (
+    <div className={styles.videoWrapper}>
+      <iframe
+        className={styles.videoFrame}
+        src={`https://www.youtube.com/embed/${videoId}`}
+        title={vidTitle}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        loading="lazy"
+      />
+    </div>
+  );
+}
 
 export const SolXPass = () => {
   return (
@@ -46,19 +63,19 @@ export const SolXPass = () => {
         <ProjectHeader
           title={title}
           description={description}
-          url="https://github.com/saksham-tomer/GreyMatterFi"
+          url="https://v0-ecru.vercel.app"
           roles={roles}
         />
         <ProjectSection padding="top">
           <ProjectSectionContent>
             <ProjectImage
               raised
-              srcSet={`${solxpassScreenshot} 1280w, ${solxpassScreenshot} 2560w`}
+              srcSet={`${solxpassCover} 1280w, ${solxpassCover} 2560w`}
               width={1280}
               height={800}
-              placeholder={solxpassScreenshot}
+              placeholder={solxpassCover}
               sizes={`(max-width: ${media.mobile}px) 100vw, (max-width: ${media.tablet}px) 800px, 1000px`}
-              alt="SolXPass GitHub repository showing the decentralized identity project"
+              alt="SolXPass decentralized identity dashboard showing proof categories and NFT reward tiers"
             />
           </ProjectSectionContent>
         </ProjectSection>
@@ -66,13 +83,28 @@ export const SolXPass = () => {
           <ProjectTextRow>
             <ProjectSectionHeading>The problem</ProjectSectionHeading>
             <ProjectSectionText>
-              Web3 applications suffer from a fundamental identity crisis: wallets prove
-              ownership of keys but not who you are. Traditional KYC solutions are
-              centralized, expensive, and require users to sacrifice privacy. SolXPass
-              was built to answer: how do you verify real-world claims on-chain without
-              revealing the underlying data?
+              Web3 apps can verify wallet ownership but not who you actually are. Traditional
+              KYC is centralized and expensive. SolXPass answers: how do you aggregate
+              verifiable real-world identity claims on-chain across food, gaming, finance,
+              social, and more — without exposing private data?
             </ProjectSectionText>
           </ProjectTextRow>
+        </ProjectSection>
+        <ProjectSection light>
+          <ProjectSectionContent>
+            <ProjectTextRow>
+              <ProjectSectionHeading>Hackathon Demo</ProjectSectionHeading>
+              <ProjectSectionText>
+                Presented live at the{' '}
+                <Link href="https://solana.com/radar">Solana Radar Hackathon</Link> — won
+                the Reclaim Protocol SideTrack. This is the demo submitted to the competition:
+              </ProjectSectionText>
+            </ProjectTextRow>
+            <YouTubeEmbed
+              videoId="nrNN-r_LAr8"
+              title="SolXPass — Solana Radar Hackathon Demo"
+            />
+          </ProjectSectionContent>
         </ProjectSection>
         <ProjectSection>
           <ProjectSectionContent>
@@ -82,34 +114,19 @@ export const SolXPass = () => {
               width={1280}
               height={800}
               placeholder={solxpassArch}
-              alt="SolXPass architecture diagram showing the flow from user wallet through Reclaim Protocol to Solana on-chain identity"
+              alt="SolXPass architecture: user wallet → Reclaim Protocol ZK proofs → Solana on-chain verification → NFT minting"
               sizes="100vw"
             />
             <ProjectTextRow>
               <ProjectSectionHeading>Architecture</ProjectSectionHeading>
               <ProjectSectionText>
-                The system uses the{' '}
-                <Link href="https://reclaimprotocol.org">Reclaim Protocol</Link> to
-                generate zero-knowledge proofs of off-chain claims (GitHub activity,
-                LinkedIn, government IDs) that are then verified and minted as
-                composable identity NFTs on Solana via an Anchor program. The
-                cross-chain bridge allows these credentials to be consumed by EVM-based
-                contracts through a Wormhole-compatible message format.
-              </ProjectSectionText>
-            </ProjectTextRow>
-          </ProjectSectionContent>
-        </ProjectSection>
-        <ProjectSection light>
-          <ProjectSectionContent>
-            <ProjectTextRow>
-              <ProjectSectionHeading>Hackathon win</ProjectSectionHeading>
-              <ProjectSectionText>
-                SolXPass was built at the{' '}
-                <Link href="https://solana.com/radar">Solana Radar Hackathon</Link> in
-                the Reclaim Protocol SideTrack category. The project received multiple
-                investor offers and was praised for its novel approach to privacy-preserving
-                on-chain identity without sacrificing composability. The Reclaim team
-                highlighted it as a flagship integration example.
+                Users submit identity proofs from multiple life categories. The{' '}
+                <Link href="https://reclaimprotocol.org">Reclaim Protocol</Link> generates
+                zero-knowledge proofs of off-chain claims (GitHub, LinkedIn, streaming
+                history) that are verified on-chain via an Anchor program — the proof hash
+                is stored on Solana, the raw data never leaves the client. Verified proofs
+                unlock NFT rewards across four leveling tiers: Animal → Dinosaur → Alien →
+                Hero.
               </ProjectSectionText>
             </ProjectTextRow>
           </ProjectSectionContent>
@@ -118,42 +135,55 @@ export const SolXPass = () => {
           <ProjectSectionColumns>
             <ProjectSectionContent>
               <ProjectTextRow>
-                <ProjectSectionHeading>Technical highlights</ProjectSectionHeading>
+                <ProjectSectionHeading>Reward system</ProjectSectionHeading>
                 <ProjectSectionText>
-                  The Anchor program handles ZK proof verification, NFT minting, and
-                  on-chain access control in a single composable instruction set. The
-                  Next.js frontend integrates Phantom wallet, generates proofs client-side
-                  via the Reclaim SDK, and submits transactions with optimistic UI — all
-                  in under 800ms end-to-end.
+                  Users earn on-chain rewards by verifying identity across categories and
+                  engaging on SolxPass Feeds (a Twitter-like community layer for Proof of
+                  Person). Sharing achievements on Twitter grants bonus multipliers. Rewards
+                  are minted as NFTs with 10 levels per tier — each tier unlocking exclusive
+                  protocol privileges.
                 </ProjectSectionText>
               </ProjectTextRow>
             </ProjectSectionContent>
             <ProjectSectionContent>
               <ProjectTextRow>
-                <ProjectSectionHeading>Impact</ProjectSectionHeading>
+                <ProjectSectionHeading>NPM SDK</ProjectSectionHeading>
                 <ProjectSectionText>
-                  Enables Web3 app developers to add verified identity gates in under
-                  10 lines of code. Privacy-preserving by default — the on-chain record
-                  contains only the proof hash, never the underlying data. The system
-                  supports cross-chain consumption, enabling EVM protocols to leverage
-                  Solana-anchored identity proofs.
+                  SolXPass ships an npm package (<code>reclaim-solxpass</code>) so DApps
+                  can retrieve user scores, tiers, proofs, and levels in two lines of code.
+                  Built for DeFi, DePIN, and blockchain infrastructure — add verified
+                  identity gates to any Solana application without building the verification
+                  layer yourself.
                 </ProjectSectionText>
               </ProjectTextRow>
             </ProjectSectionContent>
           </ProjectSectionColumns>
+        </ProjectSection>
+        <ProjectSection light>
+          <ProjectSectionContent>
+            <ProjectTextRow>
+              <ProjectSectionHeading>Platform Overview</ProjectSectionHeading>
+              <ProjectSectionText>
+                Full walkthrough of the SolxPass platform — proof generation, reward
+                claiming, and the community feed:
+              </ProjectSectionText>
+            </ProjectTextRow>
+            <YouTubeEmbed
+              videoId="V8yvr6hZWP0"
+              title="SolxPass Overview — Platform Walkthrough"
+            />
+          </ProjectSectionContent>
         </ProjectSection>
         <ProjectSection>
           <ProjectSectionContent>
             <ProjectTextRow center noMargin>
               <ProjectSectionHeading>View the project</ProjectSectionHeading>
               <ProjectSectionText>
-                The full source code, architecture docs, and Anchor program are available
-                on{' '}
-                <Link href="https://github.com/saksham-tomer/GreyMatterFi">
-                  GitHub
-                </Link>
-                . The Reclaim Protocol integration guide and on-chain program address are
-                documented in the repository README.
+                Live at{' '}
+                <Link href="https://v0-ecru.vercel.app">v0-ecru.vercel.app</Link>. Full
+                source code on{' '}
+                <Link href="https://github.com/saksham-tomer/solxpass">GitHub</Link>, including
+                the Anchor program, ZK proof integration, and npm SDK.
               </ProjectSectionText>
             </ProjectTextRow>
           </ProjectSectionContent>
@@ -163,4 +193,3 @@ export const SolXPass = () => {
     </>
   );
 };
-

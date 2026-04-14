@@ -1,38 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://hamishw.com/</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://sakshamtomer.dev/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://hamishw.com/contact/</loc>
+    <loc>https://sakshamtomer.dev/projects/meta-nft</loc>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hamishw.com/articles/</loc>
+    <loc>https://sakshamtomer.dev/projects/solxpass</loc>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hamishw.com/uses/</loc>
+    <loc>https://sakshamtomer.dev/projects/spritegen</loc>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hamishw.com/projects/slice/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://hamishw.com/projects/smart-sparrow/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://hamishw.com/projects/volkihar-knight/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://hamishw.com/articles/hello-world</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://hamishw.com/articles/modern-styling-in-react</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://sakshamtomer.dev/contact</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>

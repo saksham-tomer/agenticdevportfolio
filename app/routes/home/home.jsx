@@ -4,9 +4,9 @@ import solxpassTexturePlaceholder from '~/assets/spr-lesson-builder-dark-placeho
 import merchandaiseTexture from '~/assets/merchandaise-screenshot.png';
 import merchandaiseTextureLarge from '~/assets/merchandaise-screenshot.png';
 import merchandaiseTexturePlaceholder from '~/assets/gamestack-login-placeholder.jpg';
-import gamestackTexture2 from '~/assets/merchandaise-screenshot.png';
-import gamestackTexture2Large from '~/assets/merchandaise-screenshot.png';
-import gamestackTexture2Placeholder from '~/assets/gamestack-list-placeholder.jpg';
+import peacefulWhisperTexture from '~/assets/peaceful-whisper-bg.png';
+import peacefulWhisperTextureLarge from '~/assets/peaceful-whisper-bg.png';
+import peacefulWhisperTexturePlaceholder from '~/assets/gamestack-list-placeholder.jpg';
 import vimterminalTexture from '~/assets/vimterminal-screenshot.png';
 import vimterminalTextureLarge from '~/assets/vimterminal-screenshot.png';
 import vimterminalTexturePlaceholder from '~/assets/slice-app-placeholder.jpg';
@@ -15,6 +15,8 @@ import { baseMeta } from '~/utils/meta';
 import { Intro } from './intro';
 import { Profile } from './profile';
 import { ProjectSummary } from './project-summary';
+import { Agency } from './agency.jsx';
+import { MiscProjects } from './misc-projects.jsx';
 import { useEffect, useRef, useState } from 'react';
 import config from '~/config.json';
 import styles from './home.module.css';
@@ -53,10 +55,11 @@ export const Home = () => {
   const projectOne = useRef();
   const projectTwo = useRef();
   const projectThree = useRef();
+  const projectFour = useRef();
   const details = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, projectTwo, projectThree, details];
+    const sections = [intro, projectOne, projectTwo, projectThree, projectFour, details];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -124,21 +127,22 @@ export const Home = () => {
         sectionRef={projectTwo}
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
-        title="merchandaise.com — 3D E-Commerce Platform"
-        description="Advanced e-commerce platform with real-time 3D product visualization using WebGL shaders and GLSL rendering. Increased user engagement 40% and conversion rates 25%."
+        title="Peaceful Whisper — AI Voice Journaling"
+        description="An AI-powered voice journaling app that transcribes speech, generates thoughtful LLM reflections, and plays back calming AI audio responses. Built for mental wellness at scale."
         buttonText="View project"
-        buttonLink="/projects/merchandaise"
+        buttonLink="/projects/peaceful-whisper"
         model={{
           type: 'phone',
-          alt: 'merchandaise.com 3D product viewer',
+          alt: 'Peaceful Whisper AI journaling app',
+          video: '/Video Project.mp4',
           textures: [
             {
-              srcSet: `${merchandaiseTexture} 375w, ${merchandaiseTextureLarge} 750w`,
-              placeholder: merchandaiseTexturePlaceholder,
+              srcSet: `${peacefulWhisperTexture} 375w, ${peacefulWhisperTextureLarge} 750w`,
+              placeholder: peacefulWhisperTexturePlaceholder,
             },
             {
-              srcSet: `${gamestackTexture2} 375w, ${gamestackTexture2Large} 750w`,
-              placeholder: gamestackTexture2Placeholder,
+              srcSet: `${peacefulWhisperTexture} 375w, ${peacefulWhisperTextureLarge} 750w`,
+              placeholder: peacefulWhisperTexturePlaceholder,
             },
           ],
         }}
@@ -148,6 +152,27 @@ export const Home = () => {
         sectionRef={projectThree}
         visible={visibleSections.includes(projectThree.current)}
         index={3}
+        title="merchandaise.com — 3D E-Commerce Platform"
+        description="Advanced e-commerce platform with real-time 3D product visualization using WebGL shaders and GLSL rendering. Increased user engagement 40% and conversion rates 25%."
+        buttonText="View project"
+        buttonLink="/projects/merchandaise"
+        model={{
+          type: 'laptop',
+          alt: 'merchandaise.com 3D product viewer',
+          textures: [
+            {
+              srcSet: `${merchandaiseTexture} 1280w, ${merchandaiseTextureLarge} 2560w`,
+              placeholder: merchandaiseTexturePlaceholder,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-4"
+        alternate
+        sectionRef={projectFour}
+        visible={visibleSections.includes(projectFour.current)}
+        index={4}
         title="Vim Terminal — Rust-Powered File Explorer"
         description="Fast terminal-based file explorer with full vim keybindings built in Rust. Published on crates.io with 970+ downloads. Cross-platform with TUI/Crossterm."
         buttonText="View project"
@@ -163,6 +188,8 @@ export const Home = () => {
           ],
         }}
       />
+      <Agency />
+      <MiscProjects />
       <Profile
         sectionRef={details}
         visible={visibleSections.includes(details.current)}

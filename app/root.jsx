@@ -115,6 +115,24 @@ export default function App() {
         <Meta />
         <Links />
         <link rel="canonical" href={canonicalUrl} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Saksham Tomer',
+              jobTitle: 'Full Stack Agentic AI Engineer',
+              url: config.url,
+              sameAs: [
+                `https://linkedin.com/in/${config.linkedin}`,
+                `https://github.com/${config.github}`,
+              ],
+              description:
+                'I operate an independent AI agency building intelligent automation systems, multi-agent pipelines, and premium web experiences for ambitious founders.',
+            }),
+          }}
+        />
       </head>
       <body data-theme={theme}>
         <ThemeProvider theme={theme} toggleTheme={toggleTheme}>

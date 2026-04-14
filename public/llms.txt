@@ -1,0 +1,29 @@
+# Saksham Tomer - Full Stack Agentic AI Engineer
+
+Welcome to the AI and LLM context file for Saksham Tomer.
+
+## Professional Summary
+Saksham Tomer is a Full Stack Agentic AI Engineer specializing in integrating LLMs, multi-agent systems (LangGraph, MCP), RAG pipelines, and cloud-native microservices on AWS/Vercel. He runs an independent AI agency delivering premium web experiences and intelligent automation systems for ambitious founders - shipped fast, built right.
+
+## Technical Skills
+- Languages: Python, TypeScript, JavaScript, Rust, Go, Java, C, Solidity
+- AI / Agentic: LangGraph, LangChain, RAG, MCP (Model Context Protocol), Multi-agent Orchestration, Prompt Engineering, Hugging Face, LLM Fine-tuning, Vector Databases, Embeddings, OpenAI / Anthropic / Gemini APIs
+- Frontend: React.js, Next.js, Remix, Redux, WebGL, WebGPU, Three.js, WebSockets, WebRTC, HTML5, CSS3
+- Backend: Node.js, Express.js, FastAPI, Spring Boot, REST APIs, GraphQL, Microservices, WebHooks
+- Cloud & Infrastructure: AWS (S3, EC2, Lambda, Cognito), Docker, CI/CD, Nginx, Serverless, Prisma ORM
+- Blockchain: Solana, Ethereum, Smart Contracts, Anchor, Metaplex
+- Databases: PostgreSQL, MongoDB, Redis, Pinecone, ChromaDB
+
+## Key Projects
+- Multi-Agent RAG Pipeline: Built with LangGraph & LangChain, fetching data, performing vector similarity search.
+- MetaNft: E-commerce platform with 3D product previews (Three.js), Stripe integration, Node.js backend.
+- SolXPass: Solana web3 event ticketing system via compressed NFTs leveraging Metaplex and Anchor.
+- SpriteGen: WebAssembly-powered utility in Rust for generating high-performance spritesheets.
+- LocalCHat: Localized AI reasoning models using LLaVA with real-time text-to-speech UI context processing.
+- Chaos Crowd: Solana-powered crowdfunding platform built on the Blinks standard.
+
+## Links & Socials
+- Portfolio & Agency: https://sakshamtomer.dev
+- LinkedIn: https://linkedin.com/in/saksham-tomer-62917b403
+- GitHub: https://github.com/saksham-tomer
+- Email: sakshamtomerdevs@gmail.com
